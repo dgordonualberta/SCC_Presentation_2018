@@ -1,0 +1,70 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0,0,0}%
+
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\figW,
+height=\figH,
+at={(0\figW,0\figH)},
+scale only axis,
+xmin=270,
+xmax=720,
+xtick={270,360,450,540,630,720},
+xlabel={SOI water [$^{\circ}$CA aTDC]},
+%xmajorgrids,
+ymin=1,
+ymax=16,
+ytick={1,4,7,10,13,16},
+ylabel={$CA_{50}$ [$^{\circ}$CA aTDC]},
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.2pt]
+  table[row sep=crcr]{%
+275	14.436\\
+280	13.846\\
+305	11.841\\
+325	11.214\\
+355	10.379\\
+375	10.3605\\
+385	10.5125\\
+395	10.601\\
+415	11.4725\\
+425	12.3365\\
+435	12.7975\\
+465	12.1445\\
+485	10.795\\
+505	11.5135\\
+525	11.452\\
+545	12.364\\
+565	13.7505\\
+585	13.874\\
+600	13.448\\
+620	12.164\\
+635	11.1315\\
+640	10.741\\
+645	10.1525\\
+660	9.1805\\
+670	8.67\\
+700	6.8625\\
+710	6.2655\\
+720	5.1175\\
+};
+%\addlegendentry{Water injection};
+
+\addplot [color=mycolor2,dashed,line width=1.5pt]
+  table[row sep=crcr]{%
+275	4.1165\\
+720	4.1165\\
+};
+%\addlegendentry{Baseline without water};
+\end{axis}
+\end{tikzpicture}%

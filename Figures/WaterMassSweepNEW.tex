@@ -1,0 +1,639 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+%\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+%\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+%\definecolor{mycolor4}{rgb}{0.49400,0.18400,0.55600}%
+\definecolor{mycolor1}{rgb}{0.80,0.80,0.80}%
+\definecolor{mycolor2}{rgb}{0.55,0.55,0.55}%
+\definecolor{mycolor3}{rgb}{0.0,0.0,0.0}%
+
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\figW,
+height=0.194\figH,
+at={(0\figW,0.73\figH)},
+scale only axis,
+unbounded coords=jump,
+xmin=0,
+xmax=1,
+ymin=0,
+ymax=1,
+hide axis,
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=white]
+  table[row sep=crcr]{%
+1	0\\
+};
+\addlegendentry{$n$ = 1500 1/min, single fuel injection at IVO, $p_{in}$ = 1013 mbar, $p_{ex}$ = 1013 mbar, ($p_{inj}$-$p_{cyl}$) = 50 bar};
+
+\addplot [color=mycolor1,solid,line width=1.5pt]
+  table[row sep=crcr]{%
+1	0\\
+};
+\addlegendentry{SOI$_{H_2O}$ = 680$^{\circ}$ CA aTDC, IMEP = 4.8 bar, NVO = 163$^{\circ}$ CA, $m_{f}$ = 16.5 mg, $T_{in}$ = 50$^{\circ}$C};
+
+\addplot [color=mycolor2,solid,line width=1.5pt]
+  table[row sep=crcr]{%
+1	0\\
+};
+\addlegendentry{SOI$_{H_2O}$ = 580$^{\circ}$ CA aTDC, IMEP = 4.0 bar, NVO = 181$^{\circ}$ CA, $m_{f}$ = 13.6 mg, $T_{in}$ = 65$^{\circ}$C};
+
+\addplot [color=mycolor3,solid,line width=1.5pt]
+  table[row sep=crcr]{%
+1	0\\
+};
+\addlegendentry{SOI$_{H_2O}$ = 270$^{\circ}$ CA aTDC, IMEP = 4.0 bar, NVO = 172$^{\circ}$ CA, $m_{f}$ = 13.6 mg, $T_{in}$ = 65$^{\circ}$C};
+
+
+
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0\figW,0.538\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xtick={0,2,4,6,8},
+xticklabels={,,,,},
+xmajorgrids,
+ymin=0.06,
+ymax=0.14,
+ytick={0.06,0.08,0.1,0.12,0.14},
+yticklabels={{0.06},{0.08},{0.10},{0.12},{0.14}},
+ylabel={$\sigma$ $_{IMEP}$ [bar]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	0.1334823902\\
+3.1	0.1186491281\\
+%3	0.08924258149\\
+%2.9	0.1082978793\\
+2.8	0.07549530447\\
+2.7	0.0692217766\\
+%2.6	0.07644961007\\
+2.5	0.06656512536\\
+%2.4	0.06764924004\\
+%2.3	0.07231256328\\
+2.2	0.07748519299\\
+2.1	0.08094982892\\
+2	0.08210587762\\
+1.9	0.09495179831\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	0.08415748455\\
+2.2	0.07921651341\\
+3.3	0.07823056681\\
+3.7	0.07360315056\\
+4	0.07395409195\\
+4.8	0.07377201211\\
+5.7	0.07148233665\\
+6.2	0.07086787874\\
+6.8	0.07278654528\\
+7.3	0.07358673112\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	0.07568028773\\
+2.2	0.07169801394\\
+2.5	0.07358127903\\
+2.6	0.07152391684\\
+2.7	0.07200197432\\
+3	0.07329230783\\
+3.2	0.07460428277\\
+3.8	0.07748466488\\
+4	0.07876086575\\
+4.4	0.0923825353\\
+4.7	0.1056321288\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0.345\figW,0.538\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xtick={0,2,4,6,8},
+xticklabels={,,,,},
+xmajorgrids,
+ymin=0,
+ymax=8,
+%ytick={1,3,5,7},
+ylabel={$dp/d\varphi$ [bar/$^{\circ}$CA]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	1.111586274\\
+3.1	2.47434667\\
+%3	3.000207844\\
+%2.9	3.605993607\\
+2.8	4.659630256\\
+2.7	4.570653985\\
+%2.6	4.778652669\\
+2.5	5.316180001\\
+%2.4	7.009895764\\
+%2.3	6.934250855\\
+2.2	6.455187171\\
+2.1	6.30783193\\
+2	7.256228635\\
+1.9	8.215506689\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	5.535773839\\
+2.2	4.930482952\\
+3.3	4.099256144\\
+3.7	3.977156279\\
+4	3.769431596\\
+4.8	3.201619757\\
+5.7	2.726607456\\
+6.2	2.611097122\\
+6.8	2.480565056\\
+7.3	2.24733682\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	5.220336847\\
+2.2	4.304033759\\
+2.5	3.732607582\\
+2.6	3.430484301\\
+2.7	3.229985816\\
+3	3.035252923\\
+3.2	2.838847491\\
+3.8	2.826101865\\
+4	2.695160823\\
+4.4	2.034161288\\
+4.7	1.919843457\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0.689\figW,0.538\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xtick={0,2,4,6,8},
+xticklabels={,,,,},
+xmajorgrids,
+ymin=1.0,
+ymax=1.12,
+ytick={1,1.03,1.06,1.09,1.12},
+ylabel={$\lambda$ $_{Spindt}$[-]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	1.0381\\
+3.1	1.0359\\
+%3	1.035\\
+%2.9	1.0351\\
+2.8	1.0363\\
+2.7	1.0342\\
+2.6	1.0319\\
+2.5	1.0326\\
+%2.4	1.0332\\
+%2.3	1.0278\\
+2.2	1.0275\\
+2.1	1.0298\\
+2	1.0312\\
+1.9	1.0189\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	1.0839\\
+2.2	1.0797\\
+3.3	1.0877\\
+3.7	1.0887\\
+4	1.0876\\
+4.8	1.098\\
+5.7	1.1019\\
+6.2	1.1103\\
+6.8	1.1047\\
+7.3	1.1152\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	1.0612\\
+2.2	1.0636\\
+2.5	1.069\\
+2.6	1.0688\\
+2.7	1.0719\\
+3	1.0822\\
+3.2	1.0847\\
+3.8	1.0866\\
+4	1.0875\\
+4.4	1.0861\\
+4.7	1.0856\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0\figW,0.269\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xtick={0,2,4,6,8},
+xticklabels={,,,,},
+xmajorgrids,
+ymin=-2,
+ymax=18,
+ytick={-2,3,8,13,18},
+ylabel={$CA_{50}$ [$^{\circ}$CA aTDC]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	17.5855\\
+3.1	15.5165\\
+%3	14.3255\\
+%2.9	13.893\\
+2.8	12.357\\
+2.7	12.2705\\
+%2.6	11.987\\
+2.5	11.553\\
+%2.4	9.6825\\
+%2.3	9.5955\\
+2.2	9.9015\\
+2.1	9.9935\\
+2	8.9955\\
+1.9	7.536\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	-0.3099985193\\
+2.2	1.838901363\\
+3.3	4.371201222\\
+3.7	4.889701188\\
+4	5.495901168\\
+4.8	7.161601052\\
+5.7	7.945901008\\
+6.2	8.181601012\\
+6.8	8.454900969\\
+7.3	9.47140094\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	1.916001362\\
+2.2	5.041401187\\
+2.5	6.850301088\\
+2.6	7.795501003\\
+2.7	8.365700984\\
+3	9.036400942\\
+3.2	9.626000905\\
+3.8	9.607100936\\
+4	10.10560092\\
+4.4	12.37370078\\
+4.7	12.72370073\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0.345\figW,0.269\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xtick={0,2,4,6,8},
+xticklabels={,,,,},
+xmajorgrids,
+ymin=2,
+ymax=23,
+ytick={2,7,13,18,23},
+ylabel={$CA_{10-90}$ [$^{\circ}$CA]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	21.11766197\\
+3.1	18.06461452\\
+%3	17.03305015\\
+%2.9	16.21278712\\
+2.8	14.63014562\\
+2.7	14.92150164\\
+%2.6	14.59222129\\
+2.5	14.20016954\\
+%2.4	11.96837522\\
+%2.3	11.81719577\\
+2.2	12.43967212\\
+2.1	12.5418281\\
+2	11.55104586\\
+1.9	10.09511378\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	5.128899722\\
+2.2	5.151199708\\
+3.3	6.182699652\\
+3.7	6.405899625\\
+4	6.68419961\\
+4.8	7.578699593\\
+5.7	8.510399545\\
+6.2	8.709099516\\
+6.8	9.052399513\\
+7.3	9.520899457\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	4.826599719\\
+2.2	5.974699655\\
+2.5	6.792499619\\
+2.6	7.293599594\\
+2.7	7.580499603\\
+3	7.865199554\\
+3.2	8.22399955\\
+3.8	8.270399532\\
+4	8.538099522\\
+4.4	10.11679943\\
+4.7	10.55479938\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0.689\figW,0.269\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+xtick={0,2,4,6,8},
+xticklabels={,,,,},
+xmajorgrids,
+ymin=35,
+ymax=55,
+%ytick={40,50,60,70},
+ylabel={EGR [\%]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	39.17961578\\
+3.1	39.47145481\\
+%3	39.58446796\\
+%2.9	39.56486437\\
+2.8	39.52760321\\
+2.7	39.94101452\\
+%2.6	39.8435184\\
+2.5	39.60237366\\
+%2.4	40.32602818\\
+%2.3	40.36088526\\
+2.2	40.36200831\\
+2.1	40.3956833\\
+2	40.19915705\\
+1.9	40.80208975\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	52.31068344\\
+2.2	52.05002515\\
+3.3	51.40822194\\
+3.7	51.24428912\\
+4	50.98592822\\
+4.8	51.01106564\\
+5.7	51.00169632\\
+6.2	51.01683292\\
+6.8	50.95914426\\
+7.3	50.81866034\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	49.35352023\\
+2.2	49.04162815\\
+2.5	49.04575249\\
+2.6	48.20647254\\
+2.7	47.86680955\\
+3	47.85291273\\
+3.2	47.56645803\\
+3.8	47.47265906\\
+4	47.68642374\\
+4.4	47.10361132\\
+4.7	47.03720324\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0\figW,0\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xmajorgrids,
+ymin=400,
+ymax=500,
+ytick={400,425,450,475,500},
+ylabel={$T_{ex}$ [$^{\circ}$C]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	487.2\\
+3.1	480.1\\
+%3	475.6\\
+%2.9	475.2\\
+2.8	470.9\\
+2.7	469.6\\
+%2.6	467.9\\
+2.5	465.9\\
+%2.4	461.3\\
+%2.3	461.4\\
+2.2	462.1\\
+2.1	462.6\\
+2	458.7\\
+1.9	454.8\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	402.4\\
+2.2	407.5\\
+3.3	409\\
+3.7	411.2\\
+4	414.8\\
+4.8	412.4\\
+5.7	408.1\\
+6.2	407.9\\
+6.8	408\\
+7.3	411.1\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	419.4\\
+2.2	424.3\\
+2.5	427.4\\
+2.6	429.6\\
+2.7	429.5\\
+3	430.1\\
+3.2	431\\
+3.8	430.9\\
+4	430.9\\
+4.4	437.7\\
+4.7	440.4\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0.345\figW,0\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xlabel={Injected water mass $m_{H_2O}$ [mg]},
+xmajorgrids,
+ymin=0,
+ymax=400,
+%ytick={0,100,200,300},
+ylabel={NO$_{X}$ [ppm]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	192.8793\\
+3.1	242.682\\
+%3	260.7137\\
+%2.9	271.8267\\
+2.8	293.213\\
+2.7	300.3743\\
+%2.6	311.961\\
+2.5	326.243\\
+%2.4	374.9437\\
+%2.3	355.5257\\
+2.2	353.845\\
+2.1	343.5217\\
+2	379.572\\
+1.9	408.0253\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	241.4373\\
+2.2	157.4773\\
+3.3	119.322\\
+3.7	106.9713\\
+4	106.1468\\
+4.8	84.4287\\
+5.7	64.5398\\
+6.2	66.4561\\
+6.8	55.6146\\
+7.3	58.2937\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	216.9443\\
+2.2	170.6503\\
+2.5	139.1227\\
+2.6	114.566\\
+2.7	107.814\\
+3	111.623\\
+3.2	103.1695\\
+3.8	97.5509\\
+4	93.0086\\
+4.4	70.207\\
+4.7	62.0661\\
+};
+\end{axis}
+
+\begin{axis}[%
+width=0.22\figW,
+height=0.22\figH,
+at={(0.689\figW,0\figH)},
+scale only axis,
+xmin=0,
+xmax=8,
+%xtick={150, 170,190,210},
+xmajorgrids,
+ymin=800,
+ymax=1600,
+%ytick={1000,1400,1800,2200},
+ylabel={HC [ppm]},
+ymajorgrids,
+axis background/.style={fill=white},
+ticklabel style={font=\footnotesize},axis on top,every axis plot post/.style={line join=round},legend style={cells={anchor=west},draw=none,fill=none,font=\footnotesize,legend pos= north west,legend style={row sep=0.3pt}},/pgf/number format/.cd,1000 sep={},
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+3.3	1368.2423\\
+3.1	1272.0999\\
+%3	1246.6934\\
+%2.9	1200.3059\\
+2.8	1183.4869\\
+2.7	1165.5176\\
+%2.6	1134.3519\\
+2.5	1115.0988\\
+%2.4	1087.8145\\
+%2.3	1098.6898\\
+2.2	1114.7324\\
+2.1	1102.8677\\
+2	1072.7919\\
+1.9	1059.908\\
+};
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	914.3143\\
+2.2	989.6528\\
+3.3	1111.4484\\
+3.7	1147.906\\
+4	1111.5969\\
+4.8	1263.3099\\
+5.7	1325.4984\\
+6.2	1373.4183\\
+6.8	1357.5079\\
+7.3	1433.7445\\
+};
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
+  table[row sep=crcr]{%
+0	919.4586\\
+2.2	1025.3394\\
+2.5	1124.1018\\
+2.6	1178.2272\\
+2.7	1233.7622\\
+3	1264.0646\\
+3.2	1303.6346\\
+3.8	1317.9915\\
+4	1358.3573\\
+4.4	1454.9971\\
+4.7	1476.2631\\
+};
+\end{axis}
+\end{tikzpicture}%

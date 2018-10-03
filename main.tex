@@ -1,0 +1,459 @@
+%\documentclass[xcolor=pst,presentation]{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsbsy}
+\usepackage{graphicx}
+\usepackage{multimedia}
+\usepackage{url}
+\usepackage{extdash}
+\usepackage{color,colortbl}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{subcaption}
+\usepackage{pgfplots} 
+\usepackage{tikz}                               
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{standalone}
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+\usepackage{qtree}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\figH
+\newlength\figW
+\usepgfplotslibrary{external} 
+\tikzexternalize
+%\tikzexternalize[prefix=tikz/]
+
+\definecolor{darkgreen}{rgb}{0.1,0.5,0.1}
+\definecolor{darkblue}{rgb}{0,0,128}
+
+
+\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+\graphicspath{{Figures/}}
+\def\input@path{{Figures/}}
+\setbeamercovered{dynamic}
+
+\newenvironment<>{varblock}[2][\textwidth]{
+     \begin{center}
+       \begin{minipage}{#1}
+         \setlength{\textwidth}{#1}
+           \begin{actionenv}#3
+             \def\insertblocktitle{#2}
+             \par
+             \usebeamertemplate{block begin}}
+   {\par
+       \usebeamertemplate{block end}
+     \end{actionenv}
+   \end{minipage}
+\end{center}}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[In-Cycle Control Strategy for HCCI]{Development and Experimental Validation of an FPGA Based In-Cycle Control Strategy for HCCI Combustion Stability} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+%\author[D. Gordon]{David Gordon} % Your name
+
+\author[Gordon et. al.]{David Gordon \inst{1} \and Christian Wouters \inst{2}\and Maximilian Wick \inst{3}\and Bastian Lehrheuer \inst{3}\and Jakob Andert \inst{3}\and Charles R. Koch \inst{1}\and Stefan Pischinger \inst{3}}
+
+
+\institute[Univ. Of Alberta]{\inst{1} Dept. of Mechanical Engineering, University of Alberta, Edmonton, Canada \and %
+                      \inst{2} Dept. of Mechanical Engineering, Eindhoven University of Technology, Netherlands \and
+                      \inst{3} Institute for Combustion Engines, RWTH Aachen University, Aachen, Germany}
+
+
+\date{SCC Aachen - June 28, 2018} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+
+
+%----------------------------------------------------------------------------------------
+%   PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{HCCI Background} 
+
+%--------------------------------------------------------------SLIDE
+\begin{frame}[t]{HCCI Advantages and Disadvantages}
+ \begin{block}{Advantages}
+\begin{itemize}
+\item  Reduced NOx emissions by up to 99\% \vspace{0.10cm} 
+\item  Thermodynamic and fuel efficiency benefits up to 30\% \vspace{0.10cm}
+\item  Can operate on wide variety of fuels \vspace{0.10cm}
+\end{itemize}
+\end{block} \pause
+\begin{block}{Disadvantages}
+\begin{itemize}
+\item  Large cyclic variations \vspace{0.10cm}
+\item  Difficult to control ignition timing \vspace{0.10cm}
+\item  Limited operating range bounded by knock and misfire\vspace{0.10cm}
+\item  High HC and CO emissions \vspace{0.10cm}
+\end{itemize}
+\end{block}
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}[t]{Motivation \& Objectives}
+
+\begin{figure}[h!]
+\begin{minipage}[h!]{.5\textwidth}
+    \centering
+    \setlength{\figH}{5cm}
+    \setlength{\figW}{0.8\textwidth}
+	   \input{MisfireTracesExample.tex}
+  \small{}\label{load}
+      \end{minipage}\hfill\hfill 
+      \begin{minipage}[h!]{.5\textwidth}
+      \centering
+    \setlength{\figH}{5cm}
+    \setlength{\figW}{0.8\textwidth}
+    	\input{ReturnMap.tex}
+  \small{}\label{torq}
+  \end{minipage}\pause \pause 
+\end{figure}
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}
+\frametitle{Control strategy overview}
+\begin{columns}
+\begin{column}{.7\textwidth}
+\begin{figure}[htbp]
+\centering
+    \setlength{\figH}{5cm}
+    \setlength{\figW}{0.8\textwidth}
+	\input{Control_options.tex}
+%	\includegraphics[scale=1]{fig/Cylinder_tempGT.pdf}
+
+    \label{fig:Mfuel_Correlation}
+\end{figure}
+\end{column}
+\begin{column}{.3\textwidth}
+\begin{block}{Control strategies:}
+\begin{itemize}
+\item  Global Cycle-to-cycle \vspace{0.10cm}\pause
+\item  In-cycle \vspace{0.10cm}
+\begin{itemize}
+\item  Variable valve timings\vspace{0.10cm}\pause
+\item Fuel adaption - pre/main/post SOI \& DOI \vspace{0.10cm}\pause
+\item Spark ignition - traditional and late spark timings  \vspace{0.10cm}\pause
+\item Water injection - NVO and main compression SOI \& DOI  \vspace{0.10cm}
+\end{itemize}
+
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+
+%\begin{frame}
+%\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your %presentation
+%\end{frame}
+
+
+
+
+%---------------------------------------------------------------SLIDE
+\section{Development of feedforward residual fuel mass controller }
+\begin{frame}
+\frametitle{Feedforward residual fuel mass controller structure}
+
+\begin{figure}[htbp]
+\centering
+	\includegraphics[scale=0.7]{water_ControlModel.pdf}
+    \label{fig:ControlModel}
+\end{figure}
+
+
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\subsection{Fuel mass calculation}
+\begin{frame}
+\frametitle{Fuel mass calculation}
+
+
+\begin{equation}
+m_{f} = m_{f,inj} - m_{f,b,main} - m_{f,ex} - m_{f,b,NVO}
+\end{equation}
+
+\begin{equation}
+m_{f,b} = \frac{Q_{b}}{LHV}
+\end{equation}
+
+\begin{equation}
+m_{f,ex} = \frac{m_{cyl,EVO}-m_{cyl,EVC}}{m_{cyl,EVO}} m_{f,EVO} = x_{ex}\;m_{f,EVO}
+\end{equation}
+
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\subsection{FPGA implmentaion}
+\begin{frame}
+\frametitle{FPGA - Background}
+\begin{columns}
+\begin{column}{.4\textwidth}
+\begin{block}{Advantages:}
+\begin{itemize}
+\item Fast sample rate (12.5 ns)
+\item Low latency 
+\item Parallel computations 
+\item Easy of development and update potential compared to application-specific integrated circuits
+\end{itemize}
+\end{block}\pause
+
+\begin{block}{Challenges:}
+\begin{itemize}
+\item Individual calculation delay
+\item Fixed point arithmetic
+\item Limited calculation types
+\end{itemize}
+\end{block}
+\end{column}
+
+\begin{column}{.4\textwidth}
+\begin{block}{test}
+Test
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}
+\frametitle{FPGA - Timing requirement}
+
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}
+\frametitle{FPGA - Controller implementation}
+
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\section{Experimental setup - Single cylinder research engine}
+\begin{frame}[t]{Experimental setup}
+\begin{minipage}[h!]{.45\textwidth}
+\begin{table}[htpb]
+%\caption{Single cylinder research engine specification}
+\label{Tab:SCREparameters}
+\begin{center}
+\begin{tabular}{p{4.9cm} p{2.0cm}}
+\hline
+    Parameter           		& Value \\
+\hline
+    Displacement volume 		& 0.499 L  \\
+    Stroke / bore    	        & 90 / 84 mm    \\
+    Compression ratio   		& 12:1     \\
+    Valve train             	& EMVT   \\
+    Max. valve lift (In/Ex) 	& 8 mm/8 mm \\
+    Intake / exhaust pressure  	& 1013 mbar \\
+    Intake temperature          & 50 $^{\circ}$C \\
+    Oil and coolant temperature & 90 $^{\circ}$C \\
+    Engine speed                & 1500 rpm \\  
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+  \end{minipage}\hfill\hfill 
+   \begin{minipage}[h!]{.45\textwidth}
+      
+      \end{minipage}
+\end{frame}
+%---------------------------------------------------------------SLIDE
+\subsection{Combustion phasing correlations}
+\begin{frame}
+\frametitle{Combustion phasing correlations}
+\begin{columns}
+\begin{column}{.65\textwidth}
+\begin{figure}[htbp]
+\centering
+    \setlength{\figH}{4cm}
+    \setlength{\figW}{7cm}
+	\input{LinearPrediction_CA50_mfresEVC.tex}
+%	\includegraphics[scale=1]{fig/Cylinder_tempGT.pdf}
+
+    \label{fig:Mfuel_Correlation}
+\end{figure}
+\end{column}
+\begin{column}{.3\textwidth}
+\begin{block}{Linear combustion phasing correlation:}
+$CA_{50} = -2.5 \cdot m_{f,EVC} + 10$\\ \vspace{0.15cm}
+Based on data points:\\\vspace{0.15cm}
+$m_{f,EVC} \geq 5 mg$\\\vspace{0.15cm}
+$CA_{50}(i+1) \leq 2^{\circ} CA$ \\
+
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\subsection{Impact of direct water injection}
+\begin{frame}[t]
+\frametitle{Direct water injection}
+
+\begin{columns}
+\begin{column}{.4\textwidth}
+ \begin{block}{Impact of direct water injection}
+    \begin{itemize}
+    \item Motivation
+    \begin{itemize}
+    \item $dp/d\varphi \downarrow$
+    \item Control $CA_{50}$
+    \end{itemize}
+    \item<2-> Influence of injection timing
+    \begin{itemize}
+    \item 270 \& 580$^{\circ} CA aTDC$ provide largest impact on $CA_{50}$ and $dp/d\varphi$
+    \end{itemize}
+    \item<3> Influence of injection amount
+    \begin{itemize}
+    \item Approximately linear relation to injected water mass
+    \end{itemize}
+    \end{itemize}
+    \end{block}
+\end{column}
+
+
+
+\begin{column}{.6\textwidth}
+
+\onslide*<1>{\begin{varblock}[0.8\textwidth]{Theoretical water impact}
+\begin{itemize}
+\item Increased specific heat capacity
+$Q = m \cdot c_v\uparrow \cdot \Delta T \downarrow$
+\item Evaporation enthalpy
+\end{itemize}
+\end{varblock}}
+\begin{figure}[htbp]
+\centering
+    \setlength{\figH}{6cm}
+    \setlength{\figW}{0.85\textwidth}
+    	\onslide*<2>{\input{h20_timing_dP.tex}} 
+    	\onslide*<3->{\input{h20_Mass_dP.tex}}
+%	\includegraphics[scale=1]{fig/Cylinder_tempGT.pdf}
+
+    \label{fig:Mfuel_Correlation}
+\end{figure}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+
+
+
+%---------------------------------------------------------------SLIDE
+\section{In-cycle control results}
+\begin{frame}
+\frametitle{In-cycle control results - Control interactions}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\figW}{0.8\paperwidth}
+    \setlength{\figH}{5cm}
+	\input{ControlInteraction_Mfuelres.tex}
+%	\includegraphics[scale=1]{fig/Cylinder_tempGT.pdf}
+    \label{fig:ControlInteraction_Mfuelres}
+\end{figure}\pause
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}
+\frametitle{In-cycle control results - Cyclic stability improvement}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\figW}{0.8\paperwidth}
+    \setlength{\figH}{6cm}
+	\input{CA50_NVO_Mfuelres.tex}
+%	\includegraphics[scale=1]{fig/Cylinder_tempGT.pdf}
+    \label{fig:ControlInteraction_Mfuelres}
+\end{figure}\pause
+
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}
+\frametitle{In-cycle control results - Combustion phasing return maps}
+\begin{figure}[htbp]
+    \centering
+    \setlength{\figW}{0.8\paperwidth}
+    \setlength{\figH}{5cm}
+	\input{Figures/CA50Return_Mfuelres.tex}
+%	\includegraphics[scale=1]{fig/Cylinder_tempGT.pdf}
+    \label{fig:ControlInteraction_Mfuelres}
+\end{figure}\pause
+\end{frame}
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}
+\frametitle{In-cycle control results - Various operating points}
+\begin{table}[]
+\centering
+\begin{tabular}{p{1.8cm}p{0.6cm}p{0.6cm}p{0.6cm}p{0.6cm}p{2cm}p{1.8cm}p{2.2cm}}
+\toprule
+$SOI_{H_2O}$ [$^{\circ}$CA] & \multicolumn{2}{l}{IMEP [bar]} & \multicolumn{2}{l}{$CA_{50}$ [$^{\circ}$CA]} & Change in $\sigma$ IMEP [\%] & Change in $\sigma$ $CA_{50}$ [\%]  & Control Interactions [-]    \\\cmidrule{1-3}\cmidrule{4-5}
+Controller              & Off            & On                & Off              & On          &           &       &         \\
+\midrule
+580                     & 4.28           & 4.32              & 15.9             & 18.0        & -11.2        & -21.4 & 63/500  \\
+580                     & 2.39           & 2.41              & 8.6              & 8.9         & -10.0        & -14.6 & 33/500  \\
+580                     & 4.23           & 4.24              & 15.2             & 17.2        & -9.3         & -22.2 & 34/500  \\
+580                     & 2.38           & 2.38              & 8.6              & 9.1         & -0.2         & -20.6 & 47/500  \\
+270                     & 2.40           & 2.45              & 8.2              & 8.6         & -22.0        & -29.1 & 49/500  \\
+270                     & 2.80           & 2.96              & 8.3              & 9.9         & -27.3        & -33.5 & 14/500  \\
+270                     & 2.38           & 2.29              & 8.2              & 9.5         & 8.4          & -10.1 & 125/500 \\
+270                     & 3.30           & 3.41              & 10.9             & 12.2        & -13.5        & -22.3 & 69/500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+%---------------------------------------------------------------SLIDE
+\begin{frame}{}
+\begin{block}{}
+\vspace{0.2cm} \centering{\huge{Questions?}}\vspace{0.2cm}
+\end{block}
+
+\begin{columns}
+\begin{column}{0.27\textwidth}
+\vspace{1.5cm}
+\begin{figure}[h!]
+\begin{flushright}
+\includegraphics[width=1in]{UofA_Black.eps}\\
+\end{flushright}
+\end{figure}
+\end{column}
+\begin{column}{0.55\textwidth}
+\vspace{1.5cm} \centering{\normalsize{}}\\
+\vspace{0.05cm}  University of Alberta\\\vspace{0.05cm}
+(Email: dgordon$@$ualberta.ca)\\
+\end{column}
+\begin{column}{0.28\textwidth}
+\vspace{1.5cm}
+\begin{figure}[h!]
+\begin{flushleft}
+\includegraphics[width=1in]{EngineeringBlack.eps}\\
+\end{flushleft}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
+              
+            
